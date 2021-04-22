@@ -1,4 +1,4 @@
-Methods for problems of the type:
+Methods for problems of the type (Cauchy):
 
 "Find y such that y'(0) = f(t, y(t)) and y(t0) = y0, with t inside [t_0, t_0+T], 0< T< Inf"
 
