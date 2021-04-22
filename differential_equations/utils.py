@@ -23,9 +23,6 @@ def secantMethod(x_0, f, tolerance=0.0001):
 	x_m = 2*x_0 + 1 # x_{n-1}
 	error = np.Inf
 	while error > tolerance:
-		if (f(x_m)-f(x_l)) <= tolerance*0.1: 
-			print('Warning: slope is 0, tolerance: ', tolerance)
-			return x_m
 		x_n = x_m - f(x_m)*(x_m-x_l)/(f(x_m)-f(x_l))
 		x_l = x_m
 		x_m = x_n
