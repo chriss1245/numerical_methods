@@ -1,9 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import random
-
-
-
 
 def euler(t_0, u_0, f, h=0.1, N=10):
 
@@ -40,8 +36,8 @@ def F(t): return np.exp(t**2)
 
 t_0 = 1
 u_0 = F(t_0)
-h = 0.05
-N = 25
+h = 0.1
+N = 10
 u = euler(t_0, u_0, f, h, N) # Approximation of F
 
 t = np.arange(t_0, t_0+N*h, h) # Interval
