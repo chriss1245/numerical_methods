@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from utils import *
+import sys
+import os
+sys.path.insert(1, os.getcwd())
+from assets import secantMethod
 
 def heun(t_0, u_0, f, h, N):
 	"""

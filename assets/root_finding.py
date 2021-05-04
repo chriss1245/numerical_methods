@@ -1,9 +1,3 @@
-"""
-Auxiliar functions needed for analysis and implementetation of any method
-"""
-
-import numpy as np
-
 # Root finding method
 def secantMethod(x_0, f, tolerance=0.0001):
 	"""
@@ -28,23 +22,3 @@ def secantMethod(x_0, f, tolerance=0.0001):
 		x_m = x_n
 		error = abs(f(x_n))
 	return x_n
-
-#Plotting method
-def analyseGraphically(method, h=0.01, N=10):
-	"""
-	Auxiliary funciton for comparing graphically the methods' results and the actual results
-	of  the following differential equations
-
-
-
-	Args:
-	-----------------------------------------------------------------------------------------
-	method: callable that solves a differential equation
-	h: discretization stepsize
-	N: number of steps
-	"""
-
-
-
-	pass
-

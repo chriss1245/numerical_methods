@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from utils import secantMethod
+import sys
+import os
+sys.path.insert(1, os.getcwd())
+from assets import secantMethod
 
 #--------------------------------------------------------------------------------------------------------------------
 def trapezoidal(u_0, t_0, f, h, N):

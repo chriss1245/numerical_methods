@@ -5,10 +5,14 @@ I employ a function that returns the backward or forward differences of the orde
 I employ a funciton that returns the product of the m first polynomials
 """
 
+import sys
+import os
+sys.path.insert(1, os.getcwd())
+from assets import Polynomial
 import numpy as np
 import math
-from assets import Polynomial
 
+# Recursive funciton for getting the forward or backward differences
 def _finiteDifferences(Y, forward):
 	if len(Y)==2:
 		return [Y[1]-Y[0]]
