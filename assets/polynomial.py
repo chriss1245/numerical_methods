@@ -1,5 +1,5 @@
 import numpy as np
-class aux(type):
+class aux(type): # Axiliar class for making str(type(Polynomial)) = 'Polynomial'
 	def __repr__(self):
 		return self.__name__
 	
@@ -41,16 +41,16 @@ class Polynomial(metaclass = aux):
 			degree = ''
 
 			# Sign
-			if self.__coefficients[i] < 0:
+			if self.__coefficients[i] < 0.0:
 				sign = '-'
 			elif i < self.__degree and i > 0:
 				sign = '+'
 			
 			
 			# Coefficient
-			if self.__coefficients[i] != 0:
+			if self.__coefficients[i] != 0.0:
 				coefficient = str(np.round(self.__coefficients[i],3))
-				if self.__coefficients[i] < 0:
+				if self.__coefficients[i] < 0.0:
 					coefficient = coefficient[1:]
 
 				# Letter
@@ -68,7 +68,6 @@ class Polynomial(metaclass = aux):
 		s  = ''
 		for i in range(self.degree,-1,-1):
 			s += getCoefficient(self, i) + ' '
-			print(s)
 		return s + '(Rounded)'
 
 	def __add__(self, q):
