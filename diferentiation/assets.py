@@ -1,0 +1,137 @@
+import numpy as np
+class aux(type):
+	def __repr__(self):
+		return self.__name__
+	
+
+class Polynomial(metaclass = aux):
+	def __init__(self, *coefficients, letter = 'x'):
+		self.__degree = len(coefficients)-1
+		self.__coefficients = np.array(coefficients).astype(np.float)
+		self.__letter = letter
+
+	def __getitem__(self, i):
+		return self.__coefficients[i]
+
+	def __setitem__(self, value, i):
+		self.__coefficients[i] = value
+
+	def __iter__(self):
+		return iter(self.__coefficients)
+
+	def __gt__(self,q):
+		if self.__degree > q.__degree:
+			return True
+		return False
+	
+	def __lt__(self,q):
+		return not self > q
+	
+	def __eq__(self,q):
+		return self.__degree == q.__degree
+
+	def __repr__(self):
+		return 'Polynomial: ' + str(self.__coefficients)
+
+	def __str__(self):	
+		def getCoefficient(self,i):
+			sign = ''
+			coefficient = ''
+			letter = ''
+			degree = ''
+
+			# Sign
+			if self.__coefficients[i] < 0:
+				sign = '-'
+			elif i < self.__degree and i > 0:
+				sign = '+'
+			
+			
+			# Coefficient
+			if self.__coefficients[i] != 0:
+				coefficient = str(np.round(self.__coefficients[i],3))
+				if self.__coefficients[i] < 0:
+					coefficient = coefficient[1:]
+
+				# Letter
+				if i > 0:
+					letter = self.__letter
+
+				# Degree
+				degree = '^' +str(i)
+
+			elif i == 0:
+				coefficient = '0'
+			
+			return sign+coefficient+letter+degree
+			
+		s  = ''
+		for i in range(self.degree,-1,-1):
+			s += getCoefficient(self, i) + ' '
+			print(s)
+		return s + '(Rounded)'
+
+	def __add__(self, q):
+		if str(type(q)) == 'Polynomial':
+			if self.__degree >= q.__degree:
+				coefficients = np.zeros_like(self.__coefficients)
+				for i in range(len(self)):
+					if i > q.__degree:
+						coefficients[i] = self[i]
+					else:
+						coefficients[i] = self[i] + q[i]
+			else:
+				coefficients = np.zeros_like(q.__coefficients)
+				for i in range(len(q)):
+					if i > self.__degree:
+						coefficients[i] = q[i]
+					else:
+						coefficients[i] = self[i] + q[i]
+			return Polynomial(*coefficients)
+
+		print('Warning: non-polynomial addition is yet not defined')
+		return None
+
+	def __sub__(self,q):
+		return self+q.changeSign()
+	
+	def __mul__(self,q):
+		if type(self) == type(q):
+			coefficients = [0 for _ in range(len(self)+q.degree)]
+
+			for i in range(len(self)):
+				for j in range(q.degree+1):
+					coefficients[i+j] += self[i]*q[j]
+			return Polynomial(*coefficients)
+		
+		elif type(q) in (type(0), type(1.1)):
+			for i in range(self.degree+1):
+				self.__coefficients[i] = self.__coefficients[i]*q
+			
+			return self
+		
+		else:
+			print('Not supported {} type'.format(type(q)))
+
+	def __pow__(self,power):
+		p = self
+		while power > 0:
+			p = p*self
+			power -= 1
+		return p
+
+	def __call__(self,x_0):
+		y = 0
+		for i in range(len(self)):
+			y += self[i]*x_0**i
+		return y
+
+	def __len__(self):
+		return len(self.__coefficients)
+
+	def changeSign(self):
+		for i in range(self.degree):
+			self.__coefficients[i] = -self.__coefficients[i]
+	
+	@property
+	def degree(self): return self.__degree
