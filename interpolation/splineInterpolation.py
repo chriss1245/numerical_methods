@@ -16,6 +16,11 @@ def splineInterpolation(X,Y):
 	----------------------------------
 	A Polynomial_by_parts object composed by different polynomials of order 3
 	"""
+	# Sorting X and its images
+	indexes = np.argsort(np.array(X))
+	X = np.take_along_axis(np.array(X), indexes, 0).astype(float)
+	Y = np.take_along_axis(np.array(Y), indexes, 0).astype(float)
+
 	n = len(X) # Number of equations gotten with the condition 1: P_{k}(x_{i}) = y_{i} for all i
 	p = n-1 # Number of interpolating 3rd degree polynomials
 	dimension = p*4 # A third degree polynomial needs 4 coeffitients to be determined (ax^3+bx^2+cx+d).
@@ -40,17 +45,19 @@ def splineInterpolation(X,Y):
 		#------------------------------------------
 
 		# Equation given by evaluating the  current polynomial at the point x_{i}
-		while j < i*4+4: 
+		while j < i*4+3: 
 			A[eq][j] = X[i]**(3-(j%4))
 			j += 1
+		A[eq][j] = 1
 		b[eq] = Y[i]
 		eq +=1
 		j = i*4
 
 		# Equation given by evaluating the current polynomial at the point x_{i+1}
-		while j < i*4+4:
+		while j < i*4+3:
 			A[eq][j] = X[i+1]**(3-(j%4))
 			j += 1
+		A[eq][j] = 1
 		b[eq] = Y[i+1]
 		eq +=1
 
@@ -113,7 +120,7 @@ def splineInterpolation(X,Y):
 	def f(x):
 		# Recursive part if we are evaluating a set of points
 		if isinstance(x ,list):
-			return [f(point) for point in x]
+			return np.array([f(point) for point in x])
 
 		# Base case for one point
 		i = 0
@@ -130,6 +137,6 @@ def splineInterpolation(X,Y):
 
 	return f
 
-f = splineInterpolation([1,2,6,7,9], [3,4,8, 9,0])
+f = splineInterpolation([9,2,6,7,1], [0,4,8, 9,3])
 
-print(f([1,2,6,7,9]))
+print(f([1,2,6,7,9, 1.3]))
