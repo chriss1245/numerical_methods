@@ -7,7 +7,7 @@ class aux(type): # Axiliar class for making str(type(Polynomial)) = 'Polynomial'
 class Polynomial(metaclass = aux):
 	def __init__(self, *coefficients, letter = 'x'):
 		self.__degree = len(coefficients)-1
-		self.__coefficients = np.array(coefficients).astype(np.float)
+		self.__coefficients = np.array(coefficients).astype(float)
 		self.__letter = letter
 
 	def __getitem__(self, i):
