@@ -130,6 +130,3 @@ class Polynomial(metaclass = aux):
 	
 	@property
 	def degree(self): return self.__degree
-
-poly1 = Polynomial(1, 1, 0, -4, 3, -2)
-print(str(poly1))
