@@ -20,7 +20,7 @@ class Polynomial(metaclass = aux):
 		return iter(self.__coefficients)
 
 	def __gt__(self,q):
-		return self.__degree > q.__degree:
+		return self.__degree > q.__degree
 	
 	def __lt__(self,q):
 		return not self > q
@@ -132,3 +132,5 @@ class Polynomial(metaclass = aux):
 	
 	@property
 	def degree(self): return self.__degree
+
+poly1 = Polynomial()
