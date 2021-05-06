@@ -5,10 +5,10 @@ class aux(type): # Axiliar class for making str(type(Polynomial)) = 'Polynomial'
 	
 
 class Polynomial(metaclass = aux):
-	def __init__(self, *coefficients, letter = 'x'):
+	def __init__(self, *coefficients):
 		self.__degree = len(coefficients)-1
 		self.__coefficients = np.array(coefficients).astype(float)
-		self.__letter = letter
+		self.__letter = 'x'
 
 	def __getitem__(self, i):
 		return self.__coefficients[i]
@@ -37,36 +37,34 @@ class Polynomial(metaclass = aux):
 			coefficient = ''
 			letter = ''
 			degree = ''
+			string = ''
 
-			# Sign
-			if self.__coefficients[i] < 0.0:
-				sign = '-'
-			elif i < self.__degree and i > 0:
-				sign = '+'
-			
-			
-			# Coefficient
+			# Nothing is printed if a given coefficient is 0
 			if self.__coefficients[i] != 0.0:
 				coefficient = str(np.round(self.__coefficients[i],3))
+				if self.__coefficients[i] > 0.0:
+					sign = '+'
 				if self.__coefficients[i] < 0.0:
+					sign = '-'
 					coefficient = coefficient[1:]
-
-				# Letter
+				# Fill in string according to previous values			
+				if i != self.__degree:
+					string += sign + ' '
+				elif sign == '-':
+					string += sign
+				string += coefficient
+				if i != 0:
+					string += self.__letter
+				if i > 1:
+					string += '^' + str(i)
 				if i > 0:
-					letter = self.__letter
-
-				# Degree
-				degree = '^' +str(i)
-
-			elif i == 0:
-				coefficient = '0'
-			
-			return sign+coefficient+letter+degree
+					string += ' '
+			return string
 			
 		s  = ''
 		for i in range(self.degree,-1,-1):
-			s += getCoefficient(self, i) + ' '
-		return s + '(Rounded)'
+			s += getCoefficient(self, i)
+		return s + ' (Rounded)'
 
 	def __add__(self, q):
 		if str(type(q)) == 'Polynomial':
@@ -133,4 +131,5 @@ class Polynomial(metaclass = aux):
 	@property
 	def degree(self): return self.__degree
 
-poly1 = Polynomial()
+poly1 = Polynomial(1, 1, 0, -4, 3, -2)
+print(str(poly1))
