@@ -20,9 +20,7 @@ class Polynomial(metaclass = aux):
 		return iter(self.__coefficients)
 
 	def __gt__(self,q):
-		if self.__degree > q.__degree:
-			return True
-		return False
+		return self.__degree > q.__degree:
 	
 	def __lt__(self,q):
 		return not self > q
