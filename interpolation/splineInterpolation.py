@@ -125,7 +125,7 @@ def splineInterpolation(X,Y):
 		# Base case for one point
 		i = 0
 		if x <= X[0]:
-			return polynomials[0](x) # The polynomial is defined so that it could be used as a function (__call__(self,x) method)
+			return polynomials[0](x) # The polynomial is defined so that it could be used as a function (__call__(self,x) method of Polynomial class)
 
 		if x >= X[-1]:
 			return polynomials[-1](x)
