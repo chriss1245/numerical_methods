@@ -1,5 +1,6 @@
 import numpy as np
 # Root finding method
+import numpy as np
 def secantMethod(x_0, f, tolerance=0.0001):
 	"""
 	Applies the secant method for rootfinding of non-linear equations
