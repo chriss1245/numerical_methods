@@ -1,0 +1,3 @@
+
+def	splineInterpolation():
+	pass 
