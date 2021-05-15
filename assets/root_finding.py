@@ -1,3 +1,4 @@
+import numpy as np
 # Root finding method
 def secantMethod(x_0, f, tolerance=0.0001):
 	"""
