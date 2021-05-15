@@ -27,6 +27,17 @@ def euler(t_0, u_0, f, h=0.1, N=10):
 		u[n] = u_n
 	return u
 
+
+def recursiveEuler(t_n, u_n, f, h=0.1,N = 1):
+
+	if N == 1:
+		#Base case
+		return u_n+h*f(t_n, u_n)
+
+	#Recursive case
+	return [u_n+h*f(t_n, u_n), *recursiveEuler(t_n+h, u_n+h*f(t_n, u_n ), f, h, N-1)]
+
+	
 #----------------------------------------------------------------------------------------
 #Testing
 def f(t_n, u_n): 
@@ -38,7 +49,7 @@ t_0 = 1
 u_0 = F(t_0)
 h = 0.1
 N = 10
-u = euler(t_0, u_0, f, h, N) # Approximation of F
+u = recursiveEuler(t_0, u_0, f, h, N) # Approximation of F
 
 t = np.arange(t_0, t_0+N*h, h) # Interval
 y = F(t).reshape([N,1]) # Theorethical F
