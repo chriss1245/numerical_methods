@@ -1,4 +1,3 @@
-import numpy as np
 
 def bisectionMethod(a_0, b_0, f, tolerance=0.001):
 	"""
