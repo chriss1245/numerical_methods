@@ -1,2 +1,2 @@
-from .bisectionMethod import biesctionMethod
+from .bisectionMethod import bisectionMethod
 from .chordMethod import chordMethod

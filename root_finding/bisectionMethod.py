@@ -1,8 +1,8 @@
 import numpy as np
 
-def biesctionMethod(a_0, b_0, f, tolerance):
+def bisectionMethod(a_0, b_0, f, tolerance=0.001):
 	"""
-	The function applies the chord  or bisection method for rootfinding
+	The function applies the method for rootfinding
 	More info: https://en.wikipedia.org/wiki/Bisection_method
 
 	Args:
@@ -16,29 +16,34 @@ def biesctionMethod(a_0, b_0, f, tolerance):
 	-------------------------------------------------------
 	c_n: the root of the function
 	"""
-	if f(a_0)*f(b_0) > 0:
-		print('Error: insert values such that f(a_0)*f(b_0) < 0')
-		return None
 
-	a_n = a_0
-	b_n = b_0
-	error = np.Inf
-	while error > tolerance:
-		c_n = 0.5*(a_n+b_n)
-		
-		if f(c_n) < 0:
-			a_n = c_n
-		else:
-			b_n = c_n
-		
-		error = np.abs(f(c_n))
+	# Exceptions handler
+	if not any(map(lambda x: isinstance(a_0, x), [int, float])):
+		raise ValueError(f'a_0: {a_0} is not a valid input')
+	
+	if not any(map(lambda x: isinstance(b_0, x), [int, float])):
+		raise ValueError(f'b_0: {b_0} is not a valid input')
 
-	return c_n
+	if not any(map(lambda x: isinstance(tolerance, x), [int, float])):
+		raise ValueError(f'tolerance: {tolerance} is not a valid input')
 
-#-------------------------------------------------------------------------------------------
-#Testing
-f = lambda x: x**3+3
-a0 = -9
-b0 = 3
-tol = 0.001
-print("Method's root:", biesctionMethod(a0, b0, f, tol), "Actual root:", -3**(1/3))
+	if not callable(f):
+		raise ValueError('f is not a function')
+
+	return _bisectionMehtod(a_0, b_0, f, tolerance)
+
+
+def _bisectionMehtod(a_n, b_n, f, tolerance):
+	"""
+	Recursive method
+	"""
+
+	#Base case
+	c_n = 0.5*(a_n+b_n)
+	if abs(f(c_n)) < tolerance:
+		return c_n
+	
+	#Recursive case
+	if f(c_n) < 0:
+		return _bisectionMehtod(c_n, b_n, f, tolerance)
+	return _bisectionMehtod(a_n, c_n, f, tolerance)
