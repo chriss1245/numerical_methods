@@ -1,12 +1,18 @@
-## Welcome to GitHub Pages
+## Numerical Methods
 
-You can use the [editor on GitHub](https://github.com/chriss1245/numerical_methods/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+You can find our repository at [Link](https://github.com/chriss1245/numerical_methods/) if you wawnt to help or download the code.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+We beg you no to commit anything to the main branch at first. Please use our dev branch if you want to implement some feature.
 
-### Markdown
+### We still are working on this page
+
+
+
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+
+
+
 
 ```markdown
 Syntax highlighted code block
