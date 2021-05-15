@@ -17,7 +17,22 @@ def newtonMethod(x0, f, tolerance):
     ---------------
     x0: root of the function
     """
-    
+    # Checking input type
+	if not any(map(lambda x: isinstance(x0, x), [int, float])):
+		raise ValueError(f'x0: {x0} is not a valid input')
+	
+
+	if not any(map(lambda x: isinstance(tolerance, x), [int, float])):
+		raise ValueError(f'tolerance: {tolerance} is not a valid input')
+
+	if not callable(f):
+		raise ValueError('f is not a function')
+
+	# Checking the slope is not 0
+	if f(x_1)-f(x_0) == 0:
+		raise ZeroDivisionError('The slope is 0')
+
+
     h = 0.0000001
     error = np.Inf
     steps = 0
@@ -31,11 +46,3 @@ def newtonMethod(x0, f, tolerance):
         steps +=1
 
     return x0
-
-#-------------------------------------------------------------------------------------------
-#Testing
-f = lambda x: x**3+3
-a0 = -9
-b0 = 3
-tol = 0.001
-print("Method's root:", newtonMethod(a0, f, tol), "Actual root:", -3**(1/3))
