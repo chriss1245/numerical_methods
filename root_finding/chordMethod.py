@@ -1,4 +1,3 @@
-import numpy as np
 
 def chordMethod(x_0, x_1, f, tolerance):
 	"""
@@ -17,20 +16,34 @@ def chordMethod(x_0, x_1, f, tolerance):
 	------------------------------------------------------------------------
 	x_n a point such that abs(f(x_n))<tolerance
 	"""
-	x_l = x_0 # x_{n-2}
-	x_m = x_1 # x_{n-1}
-	error = np.Inf
-	m_ = (x_1-x_0)/(f(x_1)-f(x_0))
-	while error > tolerance:
-		x_n = x_m - f(x_m)*m_		
-		x_m = x_n
-		error = abs(f(x_n))
-	return x_n
 
-#-------------------------------------------------------------------------------------------
-#Testing
-f = lambda x: x**3+3
-a0 = -9
-b0 = 3
-tol = 0.001
-print("Method's root:", chordMethod(a0, b0, f, tol), "Actual root:", -3**(1/3))
+	# Checking input type
+	if not any(map(lambda x: isinstance(x_0, x), [int, float])):
+		raise ValueError(f'x_0: {x_0} is not a valid input')
+	
+	if not any(map(lambda x: isinstance(x_1, x), [int, float])):
+		raise ValueError(f'x_1: {x_1} is not a valid input')
+
+	if not any(map(lambda x: isinstance(tolerance, x), [int, float])):
+		raise ValueError(f'tolerance: {tolerance} is not a valid input')
+
+	if not callable(f):
+		raise ValueError('f is not a function')
+
+	# Checking the slope is not 0
+	if f(x_1)-f(x_0) == 0:
+		raise ZeroDivisionError('The slope is 0')
+
+	# Calling the chord method
+	m_ = (x_1-x_0)/(f(x_1)-f(x_0))
+	return _chordMethod(x_1, m_, f, tolerance)
+
+def _chordMethod(x_m, m_, f, tolerance):
+	x_n = x_m - m_*f(x_m)
+
+	# Base case
+	if abs(f(x_n)) < tolerance:
+		return x_n
+	
+	# Recursive case
+	return _chordMethod(x_n, m_, f, tolerance)

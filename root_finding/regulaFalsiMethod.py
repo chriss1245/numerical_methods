@@ -16,26 +16,25 @@ def regulaFalsiMethod(a,b,f,tolerance):
     -------------------------------
     x: root of f
     """
+    if not any(map(lambda x: isinstance(a, x), [int, float])):
+        raise ValueError(f'a: {a} is not a valid input')
+	
+    if not any(map(lambda x: isinstance(b, x), [int, float])):
+        raise ValueError(f'b: {b} is not a valid input')
+
+    if not any(map(lambda x: isinstance(tolerance, x), [int, float])):
+        raise ValueError(f'tolerance: {tolerance} is not a valid input')
+
+    if not callable(f):
+        raise ValueError('f is not a function')
+
     error = np.Inf
     while error > tolerance:
-
-        
         c = (a*f(b)-b*f(a))/(f(b)-f(a))
     
         if f(c) < 0:
             a = c
-
         else:
-            b = c
-            
-        error = abs(f(c))
-        
+            b = c  
+        error = abs(f(c)) 
     return c
-
-#-------------------------------------------------------------------------------------------
-#Testing
-f = lambda x: x**3+3
-a0 = -9
-b0 = 3
-tol = 0.001
-print("Method's root:", regulaFalsiMethod(a0, b0, f, tol), "Actual root:", -3**(1/3))
