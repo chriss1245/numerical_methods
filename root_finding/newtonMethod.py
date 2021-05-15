@@ -1,6 +1,4 @@
 import numpy as np
-
-
 def newtonMethod(x0, f, tolerance):
     """
     This function applies the newtons method for root finding
@@ -18,21 +16,16 @@ def newtonMethod(x0, f, tolerance):
     x0: root of the function
     """
     # Checking input type
-	if not any(map(lambda x: isinstance(x0, x), [int, float])):
-		raise ValueError(f'x0: {x0} is not a valid input')
-	
+    if not any(map(lambda x: isinstance(x0, x), [int, float])):
+        raise ValueError(f'x0: {x0} is not a valid input')
 
-	if not any(map(lambda x: isinstance(tolerance, x), [int, float])):
-		raise ValueError(f'tolerance: {tolerance} is not a valid input')
+    if not any(map(lambda x: isinstance(tolerance, x), [int, float])):
+        raise ValueError(f'tolerance: {tolerance} is not a valid input')
 
-	if not callable(f):
-		raise ValueError('f is not a function')
+    if not callable(f):
+        raise ValueError('f is not a function')
 
 	# Checking the slope is not 0
-	if f(x_1)-f(x_0) == 0:
-		raise ZeroDivisionError('The slope is 0')
-
-
     h = 0.0000001
     error = np.Inf
     steps = 0
@@ -41,7 +34,6 @@ def newtonMethod(x0, f, tolerance):
         y0 = f(x0)
         dy0 = (f(x0+h)-f(x0))/h
         x0 = x0 - y0/dy0
-        
         error = np.abs(f(x0))
         steps +=1
 
