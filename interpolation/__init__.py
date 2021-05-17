@@ -1,0 +1,4 @@
+from .gregoryNewtonMethod import gregoryNewtonInterpolation
+from .splineInterpolation import splineInterpolation
+from .lagrangeMethod import lagrangeMethod
+from .linearSystemMethod import linearMethod
