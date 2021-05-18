@@ -1,5 +1,4 @@
 import inspect
-from typing import List, Sequence, Type
 
 from attr import s
 def checkType(value, *types):
