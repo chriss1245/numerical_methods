@@ -6,15 +6,18 @@ from .lineSearch import lineSearch
 def steepestDescent(x_n, Df,f, convergence_threshold = 0.0001):
 	"""
 	Returns a minimun of f using the steepest Descent method https://en.wikipedia.org/wiki/Method_of_steepest_descent
+	
 	Args:
 	------------------------------------
-	x_n: Point form which we want to start
+	x_n: point form which we want to start
 	Df: derivative of f
 	f: target function
 	convergence_threshold: maximun variation in the minimun in order to return a solution
 
 	Returns:
-	x_n such that f(x_n) is almost minimun
+	------------------------------------
+	x_n: such that minimizes f
+	f(x_n): minimun
 	"""
 	current_min = np.Inf
 	while True:
@@ -22,7 +25,7 @@ def steepestDescent(x_n, Df,f, convergence_threshold = 0.0001):
 
 		# Checking convergence and that the minimun be non increasing
 		if current_min < new_min or abs(current_min - new_min) < convergence_threshold:
-			return x_n
+			return [x_n, f(x_n)]
 	
 		d_n = -np.array(Df(x_n))
 		alpha = lineSearch(f, x_n, d_n)
