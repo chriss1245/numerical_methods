@@ -1,10 +1,6 @@
-import numpy as np
-class aux(type): # Axiliar class for making str(type(Polynomial)) = 'Polynomial'
-	def __repr__(self):
-		return self.__name__
-	
-
-class Polynomial(metaclass = aux):
+from typing import Type
+import numpy as np	
+class Polynomial():
 	def __init__(self, *coefficients):
 		self.__degree = len(coefficients)-1
 		self.__coefficients = np.array(coefficients).astype(float)
@@ -84,8 +80,8 @@ class Polynomial(metaclass = aux):
 						coefficients[i] = self[i] + q[i]
 			return Polynomial(*coefficients)
 
-		print('Warning: non-polynomial addition is yet not defined')
-		return None
+		raise TypeError(f'Polynomial-{type(q)} addition is yet not defined')
+
 
 	def __sub__(self,q):
 		return self+q.changeSign()
