@@ -1,5 +1,5 @@
 import numpy as np
-def newtonMethod(x0, f, tolerance):
+def newtonRaphson(x0, f, tolerance):
     """
     This function applies the newtons method for root finding
     The derivative of f is approximated trought the definition of limit with h = 0.0000001

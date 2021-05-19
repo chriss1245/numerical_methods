@@ -22,7 +22,7 @@ def steepestDescent(x_n, Df,f, convergence_threshold = 0.0001):
 
 	"""
 	# Rises an Exception if x_n is not one of these types
-	checkType(x_n, [int, float, np.ndarray, list, tuple])
+	checkType(x_n, int, float, np.ndarray, list, tuple)
 
 	current_min = np.Inf
 	while True:

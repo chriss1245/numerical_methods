@@ -2,7 +2,7 @@ import inspect
 
 from attr import s
 def checkType(value, *types):
-	if any(map(lambda x: isinstance(value, x), types)):
+	if isinstance(value,types):
 		return
 
 	stringfied_types = ''.join([repr(x)[7:-1] + ' or ' for x in types])[:-3]

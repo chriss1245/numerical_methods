@@ -23,8 +23,8 @@ def newtonOptimization(x_n, f, Df, Hf, convergence_threshold = 0.0001):
 	x_n: such that minimizes f
 	"""
 	# Rises an Exception if x_n is not one of these types
-	checkType(x_n, [int, float, np.ndarray, list, tuple])
-	
+	checkType(x_n, int, float, np.ndarray, list, tuple)
+
 	# Direction
 	# One dimensional case:
 	if any(map(lambda t: isinstance(x_n,t), [int, float])):
