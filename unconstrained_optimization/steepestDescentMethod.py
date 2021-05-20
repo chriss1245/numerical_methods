@@ -1,3 +1,4 @@
+#REMARK:The steepest descent is an special case of a quasi newton method
 import numpy as np
 import sys, os
 sys.path.insert(1, os.getcwd())
