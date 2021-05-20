@@ -1,4 +1,10 @@
 import numpy as np
+import sys, os
+
+from numpy.core.fromnumeric import reshape
+
+sys.path.insert(1, os.getcwd())
+
 
 def lineSearch(f, x_n, d_n, delta_alpha=0.01, convergence_threshold = 0.001):
 	"""
@@ -15,9 +21,12 @@ def lineSearch(f, x_n, d_n, delta_alpha=0.01, convergence_threshold = 0.001):
 	alpha = 0
 	while True:
 		alpha += delta_alpha
-		new_min = f(x_n+alpha*d_n)
+		new_min = f(x_n+d_n*alpha)
 		
-		if abs(current_min -new_min) < convergence_threshold:
+		if np.abs(current_min -new_min)== np.nan:
+			raise ValueError()
+
+		if np.abs(current_min -new_min) < convergence_threshold:
 			return alpha - delta_alpha
 
 		if new_min > current_min:
