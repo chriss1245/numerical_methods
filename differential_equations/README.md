@@ -7,3 +7,5 @@ t_{n} = t_n: t_{0}*h, with h (discretization stepsize) a positive real number
 u_{n}: an approximation of y(t_{n})
 f(t_{n}, y(t_{n}) = f_{n}
 
+---------------------------------------------------------------------------
+In order to ensure stability we need to check that the method is lipschitz continuous
