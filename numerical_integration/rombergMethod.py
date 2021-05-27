@@ -1,13 +1,9 @@
 import numpy as np
 def rombergIntegration(f, a, b, m):
 	h = lambda n: (b-a)/(2**(n+1))
-
 	A = [_trapezoid(f,a,b,h(k)) for k in range(m)]
 
 	return _rombergRecursive(A, 1)
-
-	for i in range(m-1):
-		A.append(A[0])
 
 
 def _trapezoid(f,a,b,m):
