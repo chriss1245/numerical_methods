@@ -18,6 +18,6 @@ def simpsonIntegration(f, a, b, m) -> float :
 	"""
 	x = np.linspace(a,b,m)
 	scaled_h = (b-a)/(3*m)
-	evenPart= 2*np.sum([f(x[k]) for k in range(2,len(x)/2, 2)])
-	oddPart = 4*np.sum([f(x[k]) for k in range(1, len(x)/2,2)])
+	evenPart= 2*np.sum([f(x[k]) for k in range(2,len(x)//2, 2)])
+	oddPart = 4*np.sum([f(x[k]) for k in range(1, len(x)//2,2)])
 	return scaled_h*(f(x[0])+f(x[-1]) + evenPart + oddPart)
