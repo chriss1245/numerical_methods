@@ -1,0 +1,4 @@
+from .midpoint_rule import midpointIntegration
+from .rombergMethod import rombergIntegration
+from .simpsons_rule import simpsonIntegration
+from .trapezoid_rule import trapezoidalIntegration

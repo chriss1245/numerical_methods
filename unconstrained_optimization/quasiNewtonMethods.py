@@ -4,7 +4,7 @@ sys.path.insert(1, os.getcwd())
 from assets import checkType
 from .lineSearch import lineSearch
 
-def quasiNewtonOptimization(x_n, f, Df, hessianAproximation= 'BFGS', convergence_threshold = 0.0001):
+def quasiNewtonOptimization(x_n, f, df, hessianAproximation= 'BFGS', convergence_threshold = 0.0001):
 	"""
 	Returns a minimun of f using the newton method https://en.wikipedia.org/wiki/Method_of_steepest_descent
 	
@@ -22,7 +22,8 @@ def quasiNewtonOptimization(x_n, f, Df, hessianAproximation= 'BFGS', convergence
 	"""
 	# Rises an Exception if x_n is not one of these types
 	checkType(x_n, tuple, np.ndarray, list)
-	
+	x_n = np.array(x_n)
+	Df = lambda x_n: np.array(df(x_n))
 	# Checking which matrix approximation use
 	# Using unicode symbols in order to make more readable the formulas
 	if hessianAproximation == 'Broyden':
