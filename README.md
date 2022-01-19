@@ -46,5 +46,8 @@ If you want to help us... Please make changes and pull requests at the developme
 * Linear System
 * Spline
 
-### Fourier
+#### Linear Programming
+* Simplex (Still working on)
+
+#### Fourier
 * fast fourier transform (still working on)
