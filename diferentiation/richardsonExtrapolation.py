@@ -1,4 +1,19 @@
 def richardsonDerivative(f, x, h,δ, order):
+	"""
+	Computes the an approximation of the derivative following the finite difereces method of order
+	and stepsize given.
+	
+	-----------------------------------------------------------------------------------------------
+	Args
+	f: callable
+	x: point to be evaluated
+	h: precision
+	δ: scaler of h
+	
+	-----------------------------------------------------------------------------------------------
+	Returns the derivative of f evaluated at x
+	
+	"""
 	A = [(f((δ**k)*h + x)-f(x))/(δ*h) for k in range(order)]
 	return finiteDiferences(A, δ, 1)
 
